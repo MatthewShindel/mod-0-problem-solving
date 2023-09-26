@@ -1,7 +1,7 @@
 //  1. Given a sentence with only lowercase letters, print the same sentence with the first letter of every word capitalized.
 //   For example, if you were given "Turing is the best", return "Turing Is The Best" instead!
 
-
+//Overall Goal: Make first letter of each word capitalized in sentence
 // Ok, 2 ways i can think of
 // First, have a string that is the sentence. Break up the string into each word, then capitalize the first letter of the word
 // Then, put the string back together, and print it.
@@ -20,6 +20,7 @@
 var sentenceToChange = "my name is Matthew shindel, you stole my lunch, prepare to die.";
 console.log(sentenceToChange); // testing the sentence before
 var newSentence = sentenceToChange.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+// identify each word in the sentences, specifically the first letter in each word, then changes that letter to uppercase
 console.log(newSentence); // testing the sentence after
 
 // OMG it worked, thank you google
@@ -36,6 +37,7 @@ console.log(newSentence); // testing the sentence after
 // Thus, ^\w{1} matches the first letter of the word.
 // | works like the boolean OR. It matches the expression after and before the |.
 // \s+ matches any amount of whitespace between the words (for example spaces, tabs, or line breaks).
+// Finally, the "/g" at the end close the RegEx, and searches the whole sentence
 
 // I'm gonna try it a differeny way, since that felt cheap, but cool
 
@@ -50,8 +52,11 @@ console.log(newSentence); // testing the sentence after
 var sentenceToChange = "my name is Matthew shindel, you stole my lunch, prepare to die.";
 var arrayOfWords = sentenceToChange.split(" ");
 console.log(arrayOfWords);
+// make sure that I retrieved all of the words out of the original sentence
 for (var i = 0; i < arrayOfWords.length; i++){
-    arrayOfWords[i] = arrayOfWords[i][0].toUpperCase() + arrayOfWords[i].substr(1);
+    arrayOfWords[i] = arrayOfWords[i][0].toUpperCase() + arrayOfWords[i].substring(1);
+    // for each element in the array, which are each a single word, I take a first letter of the word and captialize it
+    // then, I add it back to the back to the original work, using substring to remove the first letter of the word
 }
 var completeSentence = arrayOfWords.join(" ");
 console.log(completeSentence);
